@@ -72,5 +72,33 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        describe('suggested fixes', function () {
+            var linter = require('../../../lib/linter');
+
+            it('should delete trailing whitespace', function () {
+                var source = '.foo {}  ';
+                var path = 'test.less';
+                var config = {
+                    trailingWhitespace: {
+                        enabled: true
+                    }
+                };
+                var expected = [[{
+                    range: {
+                        begin: 7,
+                        end: 9
+                    },
+                    type: 'text-delete'
+                }]];
+
+                var suggestedFixes = linter.lint(source, path, config)
+                    .map(function (result) {
+                        return result.suggestedFix;
+                    });
+
+                expect(suggestedFixes).to.deep.equal(expected);
+            });
+        });
     });
 });

@@ -97,5 +97,33 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        describe('suggested fixes', function () {
+            var linter = require('../../../lib/linter');
+
+            it('should insert a missing semicolon', function () {
+                var source = '.foo{ color:red }\n';
+                var path = 'test.less';
+                var config = {
+                    trailingSemicolon: {
+                        enabled: true
+                    }
+                };
+                var expected = [[{
+                    insertion: ';',
+                    range: {
+                        begin: 16
+                    },
+                    type: 'text-insert'
+                }]];
+
+                var suggestedFixes = linter.lint(source, path, config)
+                    .map(function (result) {
+                        return result.suggestedFix;
+                    });
+
+                expect(suggestedFixes).to.deep.equal(expected);
+            });
+        });
     });
 });
