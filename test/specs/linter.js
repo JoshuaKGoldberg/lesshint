@@ -41,6 +41,7 @@ describe('linter', function () {
                 line: 2,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
+                position: 21,
                 severity: 'warning',
                 source: ' margin-right:10px; }'
             }];
@@ -69,6 +70,7 @@ describe('linter', function () {
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
+                position: 5,
                 severity: 'warning',
                 source: '.foo{ color: red; }'
             }];
@@ -85,7 +87,7 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
-        it('should sort results by column and line number', function () {
+        it('should sort results by position', function () {
             var source = '[type="text"], [type=email] {\nmargin-right: 10px;\ncolor: red;\ncolor: blue;\n}';
             var path = 'path/to/file.less';
             var result;
@@ -98,6 +100,7 @@ describe('linter', function () {
                     line: 1,
                     linter: 'stringQuotes',
                     message: 'Strings should use single quotes.',
+                    position: 7,
                     severity: 'warning',
                     source: '[type="text"], [type=email] {'
                 },
@@ -108,6 +111,7 @@ describe('linter', function () {
                     line: 1,
                     linter: 'attributeQuotes',
                     message: 'Attribute selectors should use quotes.',
+                    position: 22,
                     severity: 'warning',
                     source: '[type="text"], [type=email] {'
                 },
@@ -118,6 +122,7 @@ describe('linter', function () {
                     line: 3,
                     linter: 'propertyOrdering',
                     message: 'Property ordering is not alphabetized',
+                    position: 49,
                     severity: 'warning',
                     source: 'color: red;'
                 },
@@ -128,6 +133,7 @@ describe('linter', function () {
                     line: 4,
                     linter: 'duplicateProperty',
                     message: 'Duplicate property: "color".',
+                    position: 60,
                     severity: 'warning',
                     source: 'color: blue;'
                 }
@@ -212,6 +218,7 @@ describe('linter', function () {
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
+                position: 14,
                 severity: 'error',
                 source: '.foo { color:red; }'
             }];
@@ -240,6 +247,7 @@ describe('linter', function () {
                 line: 6,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
+                position: 86,
                 severity: 'warning',
                 source: '.bar{'
             }];
@@ -272,6 +280,7 @@ describe('linter', function () {
                 line: 6,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
+                position: 86,
                 severity: 'warning',
                 source: '.bar{'
             }];
@@ -304,6 +313,7 @@ describe('linter', function () {
                 line: 3,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
+                position: 109,
                 severity: 'warning',
                 source: '    color:red;'
             }, {
@@ -313,6 +323,7 @@ describe('linter', function () {
                 line: 6,
                 linter: 'emptyRule',
                 message: "There shouldn't be any empty rules present.",
+                position: 114,
                 severity: 'warning',
                 source: '.bar {'
             }];
@@ -342,6 +353,7 @@ describe('linter', function () {
                 line: 5,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
+                position: 62,
                 severity: 'warning',
                 source: '.bar{'
             }];
@@ -393,6 +405,7 @@ describe('linter', function () {
                 line: 1,
                 linter: 'sample',
                 message: 'Sample error.',
+                position: 1,
                 severity: 'warning',
                 source: source.trim()
             }];
@@ -419,6 +432,7 @@ describe('linter', function () {
                 line: 1,
                 linter: 'sample',
                 message: 'Sample error.',
+                position: 1,
                 severity: 'warning',
                 source: source.trim()
             }];
